@@ -1,0 +1,98 @@
+# Configuration file for Energy Consumption Audit Pipeline
+# This file defines unit mappings, thresholds, and validation rules
+
+# Unit conversion factors (explicit, no auto-detection)
+unit_conversions:
+  EJ_to_TWh: 277.778
+  Mtoe_to_TWh: 11.63
+  ktoe_to_TWh: 0.01163
+  TWh_to_TWh: 1.0
+
+# Data quality thresholds
+data_quality:
+  # Outlier detection method: "fixed_threshold", "mad", "iqr", "zscore"
+  outlier_method: "mad"
+  
+  # Fixed threshold (only used if method is "fixed_threshold")
+  max_energy_twh: 50000
+  
+  # MAD multiplier (for MAD method)
+  mad_multiplier: 3.0
+  
+  # IQR multiplier (for IQR method)
+  iqr_multiplier: 1.5
+  
+  # Z-score threshold (for zscore method)
+  zscore_threshold: 3.0
+  
+  # Maximum gap for interpolation (years)
+  max_interpolation_gap: 3
+  
+  # Minimum years required for interpolation
+  min_years_for_interpolation: 2
+
+# Schema validation
+schema:
+  required_columns:
+    - country
+    - year
+  
+  # Expected data types
+  column_types:
+    country: string
+    year: integer
+    total_energy_twh: float
+  
+  # Year range validation
+  year_range:
+    min: 1900
+    max: 2100
+  
+  # Country name normalization
+  normalize_country_names: true
+  country_name_mapping_file: null  # Optional: path to country name mapping CSV
+
+# Population data
+population:
+  # If population file not provided, behavior:
+  # "error" - fail with error
+  # "warn" - warn but continue without per-capita
+  # "skip" - silently skip per-capita calculations
+  missing_population_behavior: "warn"
+  
+  # Population units (millions or absolute)
+  units: "millions"
+  
+  # Required columns in population file
+  required_columns:
+    - country
+    - year
+    - population
+
+# GDP data
+gdp:
+  # If GDP file not provided, behavior
+  missing_gdp_behavior: "skip"
+  
+  # Required columns in GDP file
+  required_columns:
+    - country
+    - year
+    - gdp
+  
+  # GDP units (billions_usd, trillions_usd, etc.)
+  units: "billions_usd"
+
+# Logging
+logging:
+  level: "INFO"  # DEBUG, INFO, WARNING, ERROR
+  log_file: "energy_audit.log"
+  log_intermediate_steps: true
+  log_data_quality_flags: true
+
+# Output
+output:
+  include_intermediate_files: false
+  export_validation_report: true
+  export_data_quality_report: true
+

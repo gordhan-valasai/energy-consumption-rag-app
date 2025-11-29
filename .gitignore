@@ -1,0 +1,45 @@
+# Output directories
+output/
+output_robust/
+figures/
+figures_robust/
+*.log
+
+# RAG Application
+chroma_db*/
+.env
+.streamlit/secrets.toml
+
+# Data files (uncomment if you don't want to track data)
+# *.csv
+# *.xlsx
+# *.xls
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+.venv
+
+# Julia
+*.jl.cov
+*.jl.*.cov
+*.jl.mem
+Manifest.toml
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+

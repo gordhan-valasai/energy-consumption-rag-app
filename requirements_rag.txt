@@ -1,0 +1,27 @@
+# RAG Application Requirements
+
+# Core dependencies
+streamlit>=1.28.0
+pandas>=1.5.0
+numpy>=1.23.0
+
+# LangChain for RAG
+langchain>=0.1.0
+langchain-openai>=0.0.5
+langchain-community>=0.0.20
+langchain-text-splitters>=0.0.1
+
+# Vector store
+chromadb>=0.4.0
+
+# Embeddings
+openai>=1.0.0
+sentence-transformers>=2.2.0
+
+# Optional: For local LLM support
+# ollama>=0.1.0  # Uncomment if using local models
+
+# Utilities
+python-dotenv>=1.0.0
+tiktoken>=0.5.0
+
