@@ -7,6 +7,7 @@ numpy>=1.23.0
 
 # LangChain for RAG
 langchain>=0.1.0
+langchain-core>=1.0.0
 langchain-openai>=0.0.5
 langchain-community>=0.0.20
 langchain-text-splitters>=0.0.1
